@@ -84,14 +84,17 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd",
-            "security-checker security:check": "script"
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
+        "all-scripts": [
+            "@auto-scripts",
+            "[ $COMPOSER_DEV_MODE -eq 1 ] && security-checker security:check"
+        ],
         "post-install-cmd": [
-            "@auto-scripts"
+            "@all-scripts"
         ],
         "post-update-cmd": [
-            "@auto-scripts"
+            "@all-scripts"
         ]
     },
     "conflict": {

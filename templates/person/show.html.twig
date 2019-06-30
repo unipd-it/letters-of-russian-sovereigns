@@ -1,0 +1,59 @@
+{#
+
+This file is part of «Letters of Russian sovereigns to the Republic of Venice» database.
+
+Copyright (c) Department of Linguistic and Literary Studies of the University of Padova
+
+«Letters of Russian sovereigns to the Republic of Venice» database is free software:
+you can redistribute it and/or modify it under the terms of the
+GNU General Public License as published by the Free Software Foundation, version 3.
+
+«Letters of Russian sovereigns to the Republic of Venice» database is distributed
+in the hope  that it will be useful, but WITHOUT ANY WARRANTY; without even
+the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU General Public License for more details.
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code. If you have not received
+a copy of the GNU General Public License along with
+«Letters of Russian sovereigns to the Republic of Venice» database,
+see <http://www.gnu.org/licenses/>.
+
+#}
+
+{% extends 'base.html.twig' %}
+
+{% block page_title %}{{ person.fullName }}{% endblock %}
+
+{% block page_content %}
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>{{ 'controller.person.show.person.label.fullName'|trans }}</th>
+                <td>{{ person.fullName }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'controller.person.show.person.label.description'|trans }}</th>
+                <td>{{ person.description }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'controller.person.show.person.label.dateOfBirth'|trans }}</th>
+                <td>{{ person.dateOfBirth|date('d.m.Y') }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'controller.person.show.person.label.dateOfDeath'|trans }}</th>
+                <td>{{ person.dateOfDeath|date('d.m.Y') }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'controller.person.show.person.label.positionsHeld'|trans }}</th>
+                <td>
+                    {% for positionHeld in person.positionsHeld %}
+                        <div>{{ positionHeld.positionName }} ({{ positionHeld.startTime|date('d.m.Y') }} – {{ positionHeld.endTime|date('d.m.Y') }})</div>
+                    {% endfor %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}

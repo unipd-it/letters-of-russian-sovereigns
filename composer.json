@@ -88,7 +88,7 @@
         },
         "all-scripts": [
             "@auto-scripts",
-            "[ $COMPOSER_DEV_MODE -eq 1 ] && security-checker security:check"
+            "[ $COMPOSER_DEV_MODE -eq 0 ] || security-checker security:check"
         ],
         "post-install-cmd": [
             "@all-scripts"

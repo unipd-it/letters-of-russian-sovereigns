@@ -44,7 +44,7 @@ final class LetterFixtures extends Fixture implements DependentFixtureInterface
     {
         $letter = (new LetterEntity())
             ->setDate(DateTime::createFromFormat('Y-m-d', '1701-01-01'))
-            ->setSender($this->getReference(PersonFixtures::PETER_THE_GREAT))
+            ->setSenders([$this->getReference(PersonFixtures::PETER_THE_GREAT)])
             ->setRecipient($this->getReference(PersonFixtures::ALVISE_II_MOCENIGO))
             ->setText('Some text')
         ;

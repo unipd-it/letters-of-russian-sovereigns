@@ -33,6 +33,13 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
  * @author Anton Dyshkant <vyshkant@gmail.com>
+ *
+ * @method PersonEntity|null find(int $id, int $lockMode = null, int $lockVersion = null)
+ * @method PersonEntity|null findOneBy(array $criteria, array $orderBy = null)
+ * @method PersonEntity[]    findAll()
+ * @method PersonEntity[]    findBy(array $criteria, array $orderBy = null, int $limit = null, int $offset = null)
+ * @method PersonEntity|null findOneByName(string $name)
+ * @method PersonEntity      findOneByNameOrCreate(string $name)
  */
 final class PersonRepository extends ServiceEntityRepository implements PersonRepositoryInterface
 {

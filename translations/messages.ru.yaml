@@ -25,7 +25,7 @@ controller:
         column:
           id: Id
           date: Дата
-          sender: Отправитель
+          senders: Отправитель
           recipient: Получатель
         resultsCount: "Найдено писем: count"
       filter:
@@ -41,7 +41,7 @@ controller:
       letter:
         label:
           date: Дата
-          sender: Отправитель
+          senders: Отправитель
           recipient: Получатель
           text: Текст письма
   person:

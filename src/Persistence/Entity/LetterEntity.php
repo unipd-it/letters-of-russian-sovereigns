@@ -26,10 +26,13 @@ declare(strict_types=1);
 namespace App\Persistence\Entity;
 
 use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Persistence\Repository\Letter\LetterRepository")
+ * @ORM\Table(name="lors__letter")
  *
  * @author Anton Dyshkant <vyshkant@gmail.com>
  */
@@ -47,32 +50,41 @@ class LetterEntity
     /**
      * @var DateTimeInterface
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(name="date", type="datetime")
      */
     private $date;
 
     /**
-     * @var PersonEntity
+     * @var Collection|PersonEntity[]
      *
-     * @ORM\ManyToOne(targetEntity="App\Persistence\Entity\PersonEntity")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToMany(targetEntity="App\Persistence\Entity\PersonEntity")
+     * @ORM\JoinTable(
+     *     name="lors__letter_serder",
+     *     joinColumns={@ORM\JoinColumn(name="letter_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="sender_id", referencedColumnName="id")}
+     * )
      */
-    private $sender;
+    private $senders;
 
     /**
-     * @var PersonEntity
+     * @var PersonEntity|null
      *
      * @ORM\ManyToOne(targetEntity="App\Persistence\Entity\PersonEntity")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="recipient_id")
      */
     private $recipient;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="text")
+     * @ORM\Column(name="text", type="text")
      */
     private $text;
+
+    public function __construct()
+    {
+        $this->senders = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -94,17 +106,24 @@ class LetterEntity
         return $this;
     }
 
-    public function getSender(): ?PersonEntity
+    /**
+     * @return Collection|PersonEntity[]
+     */
+    public function getSenders(): Collection
     {
-        return $this->sender;
+        return $this->senders;
     }
 
     /**
-     * @return LetterEntity
+     * @param iterable|PersonEntity[] $senders
      */
-    public function setSender(PersonEntity $sender): self
+    public function setSenders(iterable $senders): self
     {
-        $this->sender = $sender;
+        $this->senders = new ArrayCollection();
+
+        foreach ($senders as $sender) {
+            $this->senders->add($sender);
+        }
 
         return $this;
     }
@@ -114,10 +133,7 @@ class LetterEntity
         return $this->recipient;
     }
 
-    /**
-     * @return LetterEntity
-     */
-    public function setRecipient(PersonEntity $recipient): self
+    public function setRecipient(?PersonEntity $recipient): self
     {
         $this->recipient = $recipient;
 

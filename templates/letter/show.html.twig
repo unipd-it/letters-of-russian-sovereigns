@@ -27,6 +27,8 @@ see <http://www.gnu.org/licenses/>.
 
 {% block page_content %}
 
+    {% import _self as self %}
+
     <table class="table">
         <tbody>
             <tr>
@@ -34,12 +36,12 @@ see <http://www.gnu.org/licenses/>.
                 <td>{{ letter.date|date('d.m.Y') }}</td>
             </tr>
             <tr>
-                <th>{{ 'controller.letter.show.letter.label.sender'|trans }}</th>
-                <td><a href="{{ path('person__show', {'id': letter.sender.id}) }}">{{ letter.sender.fullName }}</a></td>
+                <th>{{ 'controller.letter.show.letter.label.senders'|trans }}</th>
+                <td>{{ self.format_senders(letter.senders) }}</td>
             </tr>
             <tr>
                 <th>{{ 'controller.letter.show.letter.label.recipient'|trans }}</th>
-                <td><a href="{{ path('person__show', {'id': letter.recipient.id}) }}">{{ letter.recipient.fullName }}</a></td>
+                <td>{{ self.format_recipient(letter.recipient) }}</td>
             </tr>
             <tr>
                 <th>{{ 'controller.letter.show.letter.label.text'|trans }}</th>
@@ -49,3 +51,23 @@ see <http://www.gnu.org/licenses/>.
     </table>
 
 {% endblock %}
+
+{%- macro format_senders(senders) -%}
+    {% import _self as self %}
+
+    {{ senders|map(sender => self.format_person(sender))|join(', ')|raw }}
+{%- endmacro -%}
+
+{%- macro format_recipient(recipient) -%}
+    {% import _self as self %}
+
+    {%- if recipient is not null -%}
+        {{ self.format_person(recipient) }}
+    {%- else -%}
+        {{ '-' }}
+    {%- endif -%}
+{%- endmacro -%}
+
+{%- macro format_person(person) -%}
+    <a href="{{ path('person__show', {'id': person.id}) }}">{{ person.fullName }}</a>
+{%- endmacro -%}

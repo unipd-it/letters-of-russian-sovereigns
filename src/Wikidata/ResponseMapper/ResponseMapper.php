@@ -72,7 +72,9 @@ final class ResponseMapper implements ResponseMapperInterface
                     $claimData['mainsnak']['snaktype'],
                     $claimData['mainsnak']['property'],
                     $claimData['mainsnak']['datatype'],
-                    $dataValueMapper($claimData['mainsnak']['datavalue'])
+                    \array_key_exists('datavalue', $claimData['mainsnak'])
+                        ? $dataValueMapper($claimData['mainsnak']['datavalue'])
+                        : null
                 ),
                 $claimData['type'],
                 $claimData['id'],

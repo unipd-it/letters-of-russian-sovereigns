@@ -43,12 +43,12 @@ final class Letter
     private $date;
 
     /**
-     * @var Person
+     * @var Person[]
      */
-    private $sender;
+    private $senders;
 
     /**
-     * @var Person
+     * @var Person|null
      */
     private $recipient;
 
@@ -57,11 +57,14 @@ final class Letter
      */
     private $text;
 
-    public function __construct(int $id, DateTimeInterface $date, Person $sender, Person $recipient, string $text)
+    /**
+     * @param Person[] $senders
+     */
+    public function __construct(int $id, DateTimeInterface $date, array $senders, ?Person $recipient, string $text)
     {
         $this->id = $id;
         $this->date = $date;
-        $this->sender = $sender;
+        $this->senders = $senders;
         $this->recipient = $recipient;
         $this->text = $text;
     }
@@ -76,12 +79,15 @@ final class Letter
         return $this->date;
     }
 
-    public function getSender(): Person
+    /**
+     * @return array|Person[]
+     */
+    public function getSenders(): array
     {
-        return $this->sender;
+        return $this->senders;
     }
 
-    public function getRecipient(): Person
+    public function getRecipient(): ?Person
     {
         return $this->recipient;
     }

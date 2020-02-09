@@ -73,11 +73,17 @@ final class PersonEntityToPersonConverter implements PersonEntityToPersonConvert
                 function (Claim $claim): PositionHeld {
                     return new PositionHeld(
                         $claim->getMainSnak()->getDataValue()->getValue()['id'],
-                        new DateTime($claim->getQualifiers()['P580'][0]->getDataValue()->getValue()['time']),
-                        new DateTime($claim->getQualifiers()['P582'][0]->getDataValue()->getValue()['time'])
+                        \array_key_exists('P580', $claim->getQualifiers())
+                            ? new DateTime($claim->getQualifiers()['P580'][0]->getDataValue()->getValue()['time'])
+                            : null,
+                        \array_key_exists('P582', $claim->getQualifiers())
+                            ? new DateTime($claim->getQualifiers()['P582'][0]->getDataValue()->getValue()['time'])
+                            : null
                     );
                 },
-                $wikidataEntity->getClaims()['P39']
+                \array_key_exists('P39', $wikidataEntity->getClaims())
+                    ? $wikidataEntity->getClaims()['P39']
+                    : []
             )
         );
     }

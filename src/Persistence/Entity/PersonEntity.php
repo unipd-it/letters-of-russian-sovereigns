@@ -29,6 +29,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Persistence\Repository\Person\PersonRepository")
+ * @ORM\Table(name="lors__person")
  *
  * @author Anton Dyshkant <vyshkant@gmail.com>
  */
@@ -46,7 +47,7 @@ class PersonEntity
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(name="wikidata_item", type="string", length=255, unique=true)
      */
     private $wikidataItem;
 

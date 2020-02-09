@@ -27,7 +27,9 @@ namespace App\Converter\Letter;
 
 use App\Converter\Person\PersonEntityToPersonConverterInterface;
 use App\Model\Letter;
+use App\Model\Person;
 use App\Persistence\Entity\LetterEntity;
+use App\Persistence\Entity\PersonEntity;
 
 /**
  * @author Anton Dyshkant <vyshkant@gmail.com>
@@ -46,11 +48,15 @@ final class LetterEntityToLetterConverter implements LetterEntityToLetterConvert
 
     public function convert(LetterEntity $letterEntity): Letter
     {
+        $convertPersonEntityToPerson = function (PersonEntity $personEntity): Person {
+            return $this->personEntityToPersonConverter->convert($personEntity);
+        };
+
         return new Letter(
             $letterEntity->getId(),
             $letterEntity->getDate(),
-            $this->personEntityToPersonConverter->convert($letterEntity->getSender()),
-            $this->personEntityToPersonConverter->convert($letterEntity->getRecipient()),
+            $letterEntity->getSenders()->map($convertPersonEntityToPerson)->toArray(),
+            null !== $letterEntity->getRecipient() ? $convertPersonEntityToPerson($letterEntity->getRecipient()) : null,
             $letterEntity->getText()
         );
     }

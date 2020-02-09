@@ -33,6 +33,13 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
  * @author Anton Dyshkant <vyshkant@gmail.com>
+ *
+ * @method LetterEntity|null find(int $id, int $lockMode = null, int $lockVersion = null)
+ * @method LetterEntity|null findOneBy(array $criteria, array $orderBy = null)
+ * @method LetterEntity[]    findAll()
+ * @method LetterEntity[]    findBy(array $criteria, array $orderBy = null, int $limit = null, int $offset = null)
+ * @method LetterEntity|null findOneByName(string $name)
+ * @method LetterEntity      findOneByNameOrCreate(string $name)
  */
 final class LetterRepository extends ServiceEntityRepository implements LetterRepositoryInterface
 {

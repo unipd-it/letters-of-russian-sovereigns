@@ -28,8 +28,8 @@ namespace App\Wikidata;
 use App\Wikidata\ResponseMapper\ResponseMapperInterface;
 use App\Wikidata\Types\WikidataEntity;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Uri;
+use UnexpectedValueException;
 
 /**
  * @author Anton Dyshkant <vyshkant@gmail.com>
@@ -46,23 +46,12 @@ final class WikidataConnector implements WikidataConnectorInterface
      */
     private $responseMapper;
 
-    /**
-     * @param ClientInterface         $client
-     * @param ResponseMapperInterface $responseMapper
-     */
     public function __construct(ClientInterface $client, ResponseMapperInterface $responseMapper)
     {
         $this->client = $client;
         $this->responseMapper = $responseMapper;
     }
 
-    /**
-     * @param string $entityId
-     *
-     * @throws GuzzleException
-     *
-     * @return WikidataEntity
-     */
     public function getEntity(string $entityId): WikidataEntity
     {
         $url = $this->createUrl($entityId);
@@ -71,14 +60,19 @@ final class WikidataConnector implements WikidataConnectorInterface
 
         $response = json_decode($formattedResponse, true);
 
-        return $this->responseMapper->map($response['entities'][$entityId]);
+        if (!\is_array($response)) {
+            throw new UnexpectedValueException(sprintf('Unexpected response type %s', \gettype($response)));
+        }
+
+        $entities = $response['entities'];
+
+        if (!\is_array($entities)) {
+            throw new UnexpectedValueException(sprintf('Unexpected entities section type %s', \gettype($entities)));
+        }
+
+        return $this->responseMapper->map($entities[$entityId]);
     }
 
-    /**
-     * @param string $entityId
-     *
-     * @return string
-     */
     private function createUrl(string $entityId): string
     {
         return sprintf('http://www.wikidata.org/wiki/Special:EntityData/%s.json', $entityId);

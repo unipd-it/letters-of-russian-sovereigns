@@ -63,12 +63,7 @@ final class Person
     private $positionsHeld;
 
     /**
-     * @param int               $id
-     * @param string            $fullName
-     * @param string            $description
-     * @param DateTimeInterface $dateOfBirth
-     * @param DateTimeInterface $dateOfDeath
-     * @param PositionHeld[]    $positionsHeld
+     * @param PositionHeld[] $positionsHeld
      */
     public function __construct(
         int $id,
@@ -86,41 +81,26 @@ final class Person
         $this->positionsHeld = $positionsHeld;
     }
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
     public function getFullName(): string
     {
         return $this->fullName;
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return $this->description;
     }
 
-    /**
-     * @return DateTimeInterface
-     */
     public function getDateOfBirth(): DateTimeInterface
     {
         return $this->dateOfBirth;
     }
 
-    /**
-     * @return DateTimeInterface
-     */
     public function getDateOfDeath(): DateTimeInterface
     {
         return $this->dateOfDeath;

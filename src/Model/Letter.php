@@ -57,13 +57,6 @@ final class Letter
      */
     private $text;
 
-    /**
-     * @param int               $id
-     * @param DateTimeInterface $date
-     * @param Person            $sender
-     * @param Person            $recipient
-     * @param string            $text
-     */
     public function __construct(int $id, DateTimeInterface $date, Person $sender, Person $recipient, string $text)
     {
         $this->id = $id;
@@ -73,41 +66,26 @@ final class Letter
         $this->text = $text;
     }
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return DateTimeInterface
-     */
     public function getDate(): DateTimeInterface
     {
         return $this->date;
     }
 
-    /**
-     * @return Person
-     */
     public function getSender(): Person
     {
         return $this->sender;
     }
 
-    /**
-     * @return Person
-     */
     public function getRecipient(): Person
     {
         return $this->recipient;
     }
 
-    /**
-     * @return string
-     */
     public function getText(): string
     {
         return $this->text;

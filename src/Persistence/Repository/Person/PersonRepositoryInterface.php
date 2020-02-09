@@ -37,10 +37,5 @@ interface PersonRepositoryInterface
      */
     public function getAll(): array;
 
-    /**
-     * @param int $id
-     *
-     * @return Person
-     */
     public function get(int $id): Person;
 }

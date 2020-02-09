@@ -42,17 +42,12 @@ final class PersonController extends AbstractController
      */
     private $personRepository;
 
-    /**
-     * @param PersonRepositoryInterface $personRepository
-     */
     public function __construct(PersonRepositoryInterface $personRepository)
     {
         $this->personRepository = $personRepository;
     }
 
     /**
-     * @return array
-     *
      * @Route("/list", name="person__list", methods={"GET"})
      * @Template("person/list.html.twig")
      */
@@ -66,9 +61,6 @@ final class PersonController extends AbstractController
     }
 
     /**
-     * @param int $id
-     *
-     * @return array
      * @Route("/show/{id}", name="person__show", methods={"GET"})
      * @Template("person/show.html.twig")
      */

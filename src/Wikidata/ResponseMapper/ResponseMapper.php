@@ -32,20 +32,12 @@ use App\Wikidata\Types\Qualifier;
 use App\Wikidata\Types\Snak;
 use App\Wikidata\Types\WikidataEntity;
 use DateTime;
-use Exception;
 
 /**
  * @author Anton Dyshkant <vyshkant@gmail.com>
  */
 final class ResponseMapper implements ResponseMapperInterface
 {
-    /**
-     * @param array $entityData
-     *
-     * @throws Exception
-     *
-     * @return WikidataEntity
-     */
     public function map(array $entityData): WikidataEntity
     {
         $localizedValueMapper = function (array $localizedValueData): LocalizedValue {

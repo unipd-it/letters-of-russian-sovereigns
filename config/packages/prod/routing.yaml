@@ -17,4 +17,6 @@
 # «Letters of Russian sovereigns to the Republic of Venice» database,
 # see <http://www.gnu.org/licenses/>.
 
-swiftmailer:
+framework:
+  router:
+    strict_requirements: null

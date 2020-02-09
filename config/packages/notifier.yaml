@@ -17,6 +17,12 @@
 # «Letters of Russian sovereigns to the Republic of Venice» database,
 # see <http://www.gnu.org/licenses/>.
 
-swiftmailer:
-  url: '%env(MAILER_URL)%'
-  spool: { type: 'memory' }
+framework:
+  notifier:
+    channel_policy:
+      urgent: ['email']
+      high: ['email']
+      medium: ['email']
+      low: ['email']
+    admin_recipients:
+      - { email: admin@example.com }

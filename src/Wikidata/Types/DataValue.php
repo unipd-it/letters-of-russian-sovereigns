@@ -41,8 +41,7 @@ final class DataValue
     private $type;
 
     /**
-     * @param mixed  $value
-     * @param string $type
+     * @param mixed $value
      */
     public function __construct($value, string $type)
     {
@@ -58,9 +57,6 @@ final class DataValue
         return $this->value;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;

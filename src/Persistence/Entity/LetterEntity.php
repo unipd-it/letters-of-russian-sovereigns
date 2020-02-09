@@ -74,25 +74,17 @@ class LetterEntity
      */
     private $text;
 
-    /**
-     * @return int|null
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return DateTimeInterface|null
-     */
     public function getDate(): ?DateTimeInterface
     {
         return $this->date;
     }
 
     /**
-     * @param DateTimeInterface $date
-     *
      * @return LetterEntity
      */
     public function setDate(DateTimeInterface $date): self
@@ -102,17 +94,12 @@ class LetterEntity
         return $this;
     }
 
-    /**
-     * @return PersonEntity|null
-     */
     public function getSender(): ?PersonEntity
     {
         return $this->sender;
     }
 
     /**
-     * @param PersonEntity $sender
-     *
      * @return LetterEntity
      */
     public function setSender(PersonEntity $sender): self
@@ -122,17 +109,12 @@ class LetterEntity
         return $this;
     }
 
-    /**
-     * @return PersonEntity|null
-     */
     public function getRecipient(): ?PersonEntity
     {
         return $this->recipient;
     }
 
     /**
-     * @param PersonEntity $recipient
-     *
      * @return LetterEntity
      */
     public function setRecipient(PersonEntity $recipient): self
@@ -142,17 +124,12 @@ class LetterEntity
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getText(): ?string
     {
         return $this->text;
     }
 
     /**
-     * @param string $text
-     *
      * @return LetterEntity
      */
     public function setText(string $text): self

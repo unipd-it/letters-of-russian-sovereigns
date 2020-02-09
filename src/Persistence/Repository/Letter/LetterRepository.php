@@ -29,7 +29,7 @@ use App\Converter\Letter\LetterEntityToLetterConverterInterface;
 use App\Model\Letter;
 use App\Persistence\Entity\LetterEntity;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
  * @author Anton Dyshkant <vyshkant@gmail.com>
@@ -41,12 +41,8 @@ final class LetterRepository extends ServiceEntityRepository implements LetterRe
      */
     private $letterEntityToLetterConverter;
 
-    /**
-     * @param RegistryInterface                      $registry
-     * @param LetterEntityToLetterConverterInterface $letterEntityToLetterConverter
-     */
     public function __construct(
-        RegistryInterface $registry,
+        ManagerRegistry $registry,
         LetterEntityToLetterConverterInterface $letterEntityToLetterConverter
     ) {
         parent::__construct($registry, LetterEntity::class);
@@ -66,11 +62,6 @@ final class LetterRepository extends ServiceEntityRepository implements LetterRe
         );
     }
 
-    /**
-     * @param int $id
-     *
-     * @return Letter
-     */
     public function get(int $id): Letter
     {
         return $this->letterEntityToLetterConverter->convert($this->find($id));

@@ -29,7 +29,7 @@ use App\Converter\Person\PersonEntityToPersonConverterInterface;
 use App\Model\Person;
 use App\Persistence\Entity\PersonEntity;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
  * @author Anton Dyshkant <vyshkant@gmail.com>
@@ -41,12 +41,8 @@ final class PersonRepository extends ServiceEntityRepository implements PersonRe
      */
     private $personEntityToPersonConverter;
 
-    /**
-     * @param RegistryInterface                      $registry
-     * @param PersonEntityToPersonConverterInterface $personEntityToPersonConverter
-     */
     public function __construct(
-        RegistryInterface $registry,
+        ManagerRegistry $registry,
         PersonEntityToPersonConverterInterface $personEntityToPersonConverter
     ) {
         parent::__construct($registry, PersonEntity::class);
@@ -66,11 +62,6 @@ final class PersonRepository extends ServiceEntityRepository implements PersonRe
         );
     }
 
-    /**
-     * @param int $id
-     *
-     * @return Person
-     */
     public function get(int $id): Person
     {
         return $this->personEntityToPersonConverter->convert($this->find($id));

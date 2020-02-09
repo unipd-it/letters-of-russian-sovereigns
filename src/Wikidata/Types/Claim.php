@@ -61,10 +61,6 @@ final class Claim
     private $qualifiersOrder;
 
     /**
-     * @param Snak          $mainSnak
-     * @param string        $type
-     * @param string        $id
-     * @param string        $rank
      * @param Qualifier[][] $qualifiers
      * @param string[]      $qualifiersOrder
      */
@@ -84,33 +80,21 @@ final class Claim
         $this->qualifiersOrder = $qualifiersOrder;
     }
 
-    /**
-     * @return Snak
-     */
     public function getMainSnak(): Snak
     {
         return $this->mainSnak;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string
-     */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
     public function getRank(): string
     {
         return $this->rank;

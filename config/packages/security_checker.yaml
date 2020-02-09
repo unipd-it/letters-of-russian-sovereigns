@@ -22,6 +22,6 @@ services:
     autowire: true
     autoconfigure: true
 
-  SensioLabs\Security\SecurityChecker: ~
+  SensioLabs\Security\SecurityChecker: null
 
-  SensioLabs\Security\Command\SecurityCheckerCommand: ~
+  SensioLabs\Security\Command\SecurityCheckerCommand: null

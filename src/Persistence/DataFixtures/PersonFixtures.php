@@ -27,7 +27,7 @@ namespace App\Persistence\DataFixtures;
 
 use App\Persistence\Entity\PersonEntity;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 
 /**
  * @author Anton Dyshkant <vyshkant@gmail.com>
@@ -38,9 +38,6 @@ final class PersonFixtures extends Fixture
 
     public const ALVISE_II_MOCENIGO = 'alvise_ii_mocenigo';
 
-    /**
-     * @param ObjectManager $manager
-     */
     public function load(ObjectManager $manager): void
     {
         $person = (new PersonEntity())

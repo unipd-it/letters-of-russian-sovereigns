@@ -47,11 +47,6 @@ final class PositionHeld
      */
     private $endTime;
 
-    /**
-     * @param string            $positionName
-     * @param DateTimeInterface $startTime
-     * @param DateTimeInterface $endTime
-     */
     public function __construct(string $positionName, DateTimeInterface $startTime, DateTimeInterface $endTime)
     {
         $this->positionName = $positionName;
@@ -59,25 +54,16 @@ final class PositionHeld
         $this->endTime = $endTime;
     }
 
-    /**
-     * @return string
-     */
     public function getPositionName(): string
     {
         return $this->positionName;
     }
 
-    /**
-     * @return DateTimeInterface
-     */
     public function getStartTime(): DateTimeInterface
     {
         return $this->startTime;
     }
 
-    /**
-     * @return DateTimeInterface
-     */
     public function getEndTime(): DateTimeInterface
     {
         return $this->endTime;

@@ -37,10 +37,5 @@ interface LetterRepositoryInterface
      */
     public function getAll(): array;
 
-    /**
-     * @param int $id
-     *
-     * @return Letter
-     */
     public function get(int $id): Letter;
 }

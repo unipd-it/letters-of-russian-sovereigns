@@ -93,13 +93,6 @@ final class WikidataEntity
     private $siteLinks;
 
     /**
-     * @param int                $pageId
-     * @param int                $namespaceId
-     * @param string             $pageTitle
-     * @param int                $lastRevisionId
-     * @param DateTimeInterface  $lastRevisionTime
-     * @param string             $type
-     * @param string             $id
      * @param LocalizedValue[]   $labels
      * @param LocalizedValue[]   $descriptions
      * @param LocalizedValue[][] $aliases
@@ -134,57 +127,36 @@ final class WikidataEntity
         $this->siteLinks = $siteLinks;
     }
 
-    /**
-     * @return int
-     */
     public function getPageId(): int
     {
         return $this->pageId;
     }
 
-    /**
-     * @return int
-     */
     public function getNamespaceId(): int
     {
         return $this->namespaceId;
     }
 
-    /**
-     * @return string
-     */
     public function getPageTitle(): string
     {
         return $this->pageTitle;
     }
 
-    /**
-     * @return int
-     */
     public function getLastRevisionId(): int
     {
         return $this->lastRevisionId;
     }
 
-    /**
-     * @return DateTimeInterface
-     */
     public function getLastRevisionTime(): DateTimeInterface
     {
         return $this->lastRevisionTime;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string
-     */
     public function getId(): string
     {
         return $this->id;

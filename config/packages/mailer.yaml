@@ -17,6 +17,6 @@
 # «Letters of Russian sovereigns to the Republic of Venice» database,
 # see <http://www.gnu.org/licenses/>.
 
-_errors:
-  resource: '@TwigBundle/Resources/config/routing/errors.xml'
-  prefix: /_error
+framework:
+  mailer:
+    dsn: '%env(MAILER_DSN)%'

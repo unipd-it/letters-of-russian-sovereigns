@@ -33,10 +33,5 @@ use App\Persistence\Entity\LetterEntity;
  */
 interface LetterEntityToLetterConverterInterface
 {
-    /**
-     * @param LetterEntity $letterEntity
-     *
-     * @return Letter
-     */
     public function convert(LetterEntity $letterEntity): Letter;
 }

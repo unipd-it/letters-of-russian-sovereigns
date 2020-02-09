@@ -29,10 +29,5 @@ use App\Wikidata\Types\WikidataEntity;
 
 interface WikidataConnectorInterface
 {
-    /**
-     * @param string $entityId
-     *
-     * @return WikidataEntity
-     */
     public function getEntity(string $entityId): WikidataEntity;
 }

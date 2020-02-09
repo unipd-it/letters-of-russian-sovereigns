@@ -50,10 +50,6 @@ final class PersonEntityToPersonConverter implements PersonEntityToPersonConvert
      */
     private $wikidataConnector;
 
-    /**
-     * @param LocaleAwareInterface       $localeProvider
-     * @param WikidataConnectorInterface $wikidataConnector
-     */
     public function __construct(LocaleAwareInterface $localeProvider, WikidataConnectorInterface $wikidataConnector)
     {
         $this->localeProvider = $localeProvider;
@@ -61,11 +57,7 @@ final class PersonEntityToPersonConverter implements PersonEntityToPersonConvert
     }
 
     /**
-     * @param PersonEntity $personEntity
-     *
      * @throws Exception
-     *
-     * @return Person
      */
     public function convert(PersonEntity $personEntity): Person
     {
@@ -92,8 +84,6 @@ final class PersonEntityToPersonConverter implements PersonEntityToPersonConvert
 
     /**
      * @param LocalizedValue[] $localizedValues
-     *
-     * @return string
      */
     private function peekLocalizedValue(array $localizedValues): string
     {
@@ -104,11 +94,6 @@ final class PersonEntityToPersonConverter implements PersonEntityToPersonConvert
         return '';
     }
 
-    /**
-     * @param array $availableLanguages
-     *
-     * @return string
-     */
     private function peekLanguage(array $availableLanguages): string
     {
         $languages = [

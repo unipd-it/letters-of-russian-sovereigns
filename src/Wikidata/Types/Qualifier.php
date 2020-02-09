@@ -35,13 +35,6 @@ final class Qualifier extends Snak
      */
     private $hash;
 
-    /**
-     * @param string         $snakType
-     * @param string         $property
-     * @param string         $dataType
-     * @param DataValue|null $dataValue
-     * @param string|null    $hash
-     */
     public function __construct(
         string $snakType,
         string $property,
@@ -53,9 +46,6 @@ final class Qualifier extends Snak
         $this->hash = $hash;
     }
 
-    /**
-     * @return string|null
-     */
     public function getHash(): ?string
     {
         return $this->hash;

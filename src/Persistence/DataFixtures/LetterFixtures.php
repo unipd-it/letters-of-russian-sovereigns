@@ -29,7 +29,7 @@ use App\Persistence\Entity\LetterEntity;
 use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use Exception;
 
 /**
@@ -38,8 +38,6 @@ use Exception;
 final class LetterFixtures extends Fixture implements DependentFixtureInterface
 {
     /**
-     * @param ObjectManager $manager
-     *
      * @throws Exception
      */
     public function load(ObjectManager $manager): void

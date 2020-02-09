@@ -42,17 +42,12 @@ final class LetterController extends AbstractController
      */
     private $letterRepository;
 
-    /**
-     * @param LetterRepositoryInterface $letterRepository
-     */
     public function __construct(LetterRepositoryInterface $letterRepository)
     {
         $this->letterRepository = $letterRepository;
     }
 
     /**
-     * @return array
-     *
      * @Route("/list", name="letter__list", methods={"GET"})
      *
      * @Template("letter/list.html.twig")
@@ -67,9 +62,6 @@ final class LetterController extends AbstractController
     }
 
     /**
-     * @param int $id
-     *
-     * @return array
      * @Route("/show/{id}", name="letter__show", methods={"GET"})
      * @Template("letter/show.html.twig")
      */

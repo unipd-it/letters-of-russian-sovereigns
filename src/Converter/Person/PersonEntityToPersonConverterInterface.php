@@ -33,10 +33,5 @@ use App\Persistence\Entity\PersonEntity;
  */
 interface PersonEntityToPersonConverterInterface
 {
-    /**
-     * @param PersonEntity $personEntity
-     *
-     * @return Person
-     */
     public function convert(PersonEntity $personEntity): Person;
 }

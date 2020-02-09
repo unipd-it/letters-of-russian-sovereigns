@@ -50,12 +50,6 @@ class Snak
      */
     private $dataValue;
 
-    /**
-     * @param string         $snakType
-     * @param string         $property
-     * @param string         $dataType
-     * @param DataValue|null $dataValue
-     */
     public function __construct(string $snakType, string $property, string $dataType, ?DataValue $dataValue)
     {
         $this->snakType = $snakType;
@@ -64,33 +58,21 @@ class Snak
         $this->dataValue = $dataValue;
     }
 
-    /**
-     * @return string
-     */
     public function getSnakType(): string
     {
         return $this->snakType;
     }
 
-    /**
-     * @return string
-     */
     public function getProperty(): string
     {
         return $this->property;
     }
 
-    /**
-     * @return string
-     */
     public function getDataType(): string
     {
         return $this->dataType;
     }
 
-    /**
-     * @return DataValue
-     */
     public function getDataValue(): DataValue
     {
         return $this->dataValue;

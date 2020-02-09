@@ -39,19 +39,11 @@ final class LetterEntityToLetterConverter implements LetterEntityToLetterConvert
      */
     private $personEntityToPersonConverter;
 
-    /**
-     * @param PersonEntityToPersonConverterInterface $personEntityToPersonConverter
-     */
     public function __construct(PersonEntityToPersonConverterInterface $personEntityToPersonConverter)
     {
         $this->personEntityToPersonConverter = $personEntityToPersonConverter;
     }
 
-    /**
-     * @param LetterEntity $letterEntity
-     *
-     * @return Letter
-     */
     public function convert(LetterEntity $letterEntity): Letter
     {
         return new Letter(

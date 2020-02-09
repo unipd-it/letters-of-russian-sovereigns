@@ -32,10 +32,5 @@ use App\Wikidata\Types\WikidataEntity;
  */
 interface ResponseMapperInterface
 {
-    /**
-     * @param array $entityData
-     *
-     * @return WikidataEntity
-     */
     public function map(array $entityData): WikidataEntity;
 }

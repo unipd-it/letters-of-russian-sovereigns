@@ -33,6 +33,7 @@ use App\Wikidata\Types\Qualifier;
 use App\Wikidata\Types\Snak;
 use App\Wikidata\Types\WikidataEntity;
 use DateTime;
+use DateTimeZone;
 use Exception;
 use PHPUnit\Framework\TestCase;
 
@@ -54,7 +55,6 @@ final class ResponseMapperTest extends TestCase
     /**
      * @dataProvider getEntityDataCollection
      *
-     * @param array          $entityData
      * @param WikidataEntity $expectedWikidataEntity
      *
      * @throws Exception
@@ -532,7 +532,7 @@ final class ResponseMapperTest extends TestCase
                     0,
                     'Q8479',
                     965981210,
-                    new DateTime('2019-06-21 04:35:36.000000'),
+                    new DateTime('2019-06-21 04:35:36.000000', new DateTimeZone('Etc/Zulu')),
                     'item',
                     'Q8479',
                     [

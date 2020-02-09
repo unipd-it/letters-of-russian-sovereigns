@@ -23,50 +23,12 @@ declare(strict_types=1);
  * see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Persistence\Entity;
+use Symfony\Component\Dotenv\Dotenv;
 
-use Doctrine\ORM\Mapping as ORM;
+require dirname(__DIR__).'/vendor/autoload.php';
 
-/**
- * @ORM\Entity(repositoryClass="App\Persistence\Repository\Person\PersonRepository")
- *
- * @author Anton Dyshkant <vyshkant@gmail.com>
- */
-class PersonEntity
-{
-    /**
-     * @var int
-     *
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255)
-     */
-    private $wikidataItem;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getWikidataItem(): ?string
-    {
-        return $this->wikidataItem;
-    }
-
-    /**
-     * @return PersonEntity
-     */
-    public function setWikidataItem(string $wikidataItem): self
-    {
-        $this->wikidataItem = $wikidataItem;
-
-        return $this;
-    }
+if (file_exists(dirname(__DIR__).'/config/bootstrap.php')) {
+    require dirname(__DIR__).'/config/bootstrap.php';
+} elseif (method_exists(Dotenv::class, 'bootEnv')) {
+    (new Dotenv())->bootEnv(dirname(__DIR__).'/.env');
 }

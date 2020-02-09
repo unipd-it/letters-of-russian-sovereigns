@@ -21,14 +21,24 @@
 
 const Encore = require('@symfony/webpack-encore');
 
+if (!Encore.isRuntimeEnvironmentConfigured()) {
+    Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
+}
+
 Encore
     .setOutputPath('public/build/')
     .setPublicPath('/build')
     .cleanupOutputBeforeBuild()
-    .disableSingleRuntimeChunk()
+    .splitEntryChunks()
+    .enableSingleRuntimeChunk()
     .enableSourceMaps(!Encore.isProduction())
     .enableVersioning(Encore.isProduction())
+    .enableBuildNotifications()
     .enableSassLoader()
+    .configureBabelPresetEnv((config) => {
+        config.useBuiltIns = 'usage';
+        config.corejs = 3;
+    })
     .addStyleEntry('css/person/list', './assets/scss/person/list.scss')
     .addStyleEntry('css/person/show', './assets/scss/person/show.scss')
     .addStyleEntry('css/letter/list', './assets/scss/letter/list.scss')

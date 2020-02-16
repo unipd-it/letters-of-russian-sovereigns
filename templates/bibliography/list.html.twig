@@ -24,24 +24,10 @@ see <http://www.gnu.org/licenses/>.
 {% extends 'base.html.twig' %}
 
 {% block page_content %}
-    <table class="table">
-        <thead>
-            <tr>
-                <th>{{ 'controller.letter.list.table.column.id'|trans }}</th>
-                <th>{{ 'controller.letter.list.table.column.date'|trans }}</th>
-                <th>{{ 'controller.letter.list.table.column.senders'|trans }}</th>
-                <th>{{ 'controller.letter.list.table.column.recipient'|trans }}</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for letter in letters %}
-            <tr>
-                <td><a href="{{ path('letter__show', {'id': letter.id}) }}">{{ letter.id }}</a></td>
-                <td>{{ letter.date|date('d.m.Y') }}</td>
-                <td>{{ letter.senders|map(sender => sender.fullName)|join(', ') }}</td>
-                <td>{{ letter.recipient.fullName|default('-') }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    {% import '@VyfonyBibliography/bibliographic_record.html.twig' as bibliographic_record %}
+
+    <p></p>
+    {% for record in records %}
+        <p>{{ bibliographic_record.render_record(record) }}</p>
+    {% endfor %}
 {% endblock %}

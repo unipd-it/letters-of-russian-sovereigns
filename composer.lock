@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2d7745e949642b46b12710ed4e5726ca",
+    "content-hash": "285ee545b672d79c28fc9374cc03b82a",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -6457,6 +6457,70 @@
                 "templating"
             ],
             "time": "2019-12-28T07:17:28+00:00"
+        },
+        {
+            "name": "vyfony/bibliography-bundle",
+            "version": "v0.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vyfony/bibliography-bundle.git",
+                "reference": "ac75a86683b031e7bb74c386a337abedf330cf01"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vyfony/bibliography-bundle/zipball/ac75a86683b031e7bb74c386a337abedf330cf01",
+                "reference": "ac75a86683b031e7bb74c386a337abedf330cf01",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/doctrine-bundle": "^2.0",
+                "doctrine/orm": "^2.7",
+                "php": "^7.2.0",
+                "symfony/config": "^5.0",
+                "symfony/console": "^5.0",
+                "symfony/dependency-injection": "^5.0",
+                "symfony/doctrine-bridge": "^5.0",
+                "symfony/http-kernel": "^5.0",
+                "symfony/yaml": "^5.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.16",
+                "jakub-onderka/php-parallel-lint": "^1.0",
+                "phan/phan": "^2.4",
+                "phpro/grumphp": "^0.17",
+                "phpunit/phpunit": "^7.3",
+                "sensiolabs/security-checker": "^6.0",
+                "squizlabs/php_codesniffer": "^3.5"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Vyfony\\Bundle\\BibliographyBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anton Dyshkant",
+                    "email": "vyshkant@gmail.com",
+                    "homepage": "https://vyshkant.github.io"
+                }
+            ],
+            "description": "Symfony VyfonyBibliographyBundle",
+            "homepage": "https://github.com/vyfony/bibliography-bundle",
+            "keywords": [
+                "Bibliography",
+                "symfony-bundle"
+            ],
+            "time": "2020-01-18T14:41:09+00:00"
         },
         {
             "name": "webmozart/assert",

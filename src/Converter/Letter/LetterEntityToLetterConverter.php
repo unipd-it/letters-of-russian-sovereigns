@@ -57,7 +57,8 @@ final class LetterEntityToLetterConverter implements LetterEntityToLetterConvert
             $letterEntity->getDate(),
             $letterEntity->getSenders()->map($convertPersonEntityToPerson)->toArray(),
             null !== $letterEntity->getRecipient() ? $convertPersonEntityToPerson($letterEntity->getRecipient()) : null,
-            $letterEntity->getText()
+            $letterEntity->getText(),
+            $letterEntity->getLiterature()->toArray()
         );
     }
 }

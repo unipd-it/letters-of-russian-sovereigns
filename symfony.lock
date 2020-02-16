@@ -651,6 +651,9 @@
     "twig/twig": {
         "version": "v3.0.1"
     },
+    "vyfony/bibliography-bundle": {
+        "version": "v0.0.6"
+    },
     "vyfony/mysqldump-bundle": {
         "version": "v0.3.0"
     },

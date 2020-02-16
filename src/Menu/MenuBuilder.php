@@ -67,6 +67,10 @@ final class MenuBuilder
             ->setCurrent(\in_array($currentRoute, ['letter__list', 'letter__show'], true))
         ;
 
+        $menu
+            ->addChild('page.menu.bibliography', ['route' => 'bibiliograpic_record__list'])
+        ;
+
         foreach ($menu->getChildren() as $child) {
             $child
                 ->setAttribute('class', 'nav-item lors-nav-item')

@@ -29,6 +29,7 @@ use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Vyfony\Bundle\BibliographyBundle\Persistence\Entity\BibliographicRecord;
 
 /**
  * @ORM\Entity(repositoryClass="App\Persistence\Repository\Letter\LetterRepository")
@@ -81,9 +82,22 @@ class LetterEntity
      */
     private $text;
 
+    /**
+     * @var Collection|BibliographicRecord[]
+     *
+     * @ORM\ManyToMany(targetEntity="Vyfony\Bundle\BibliographyBundle\Persistence\Entity\BibliographicRecord")
+     * @ORM\JoinTable(
+     *     name="lors__letter_bibliographic_record",
+     *     joinColumns={@ORM\JoinColumn(name="letter_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="bibliographic_record_id", referencedColumnName="id")}
+     * )
+     */
+    private $literature;
+
     public function __construct()
     {
         $this->senders = new ArrayCollection();
+        $this->literature = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -151,6 +165,28 @@ class LetterEntity
     public function setText(string $text): self
     {
         $this->text = $text;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|BibliographicRecord[]
+     */
+    public function getLiterature(): Collection
+    {
+        return $this->literature;
+    }
+
+    /**
+     * @param iterable|BibliographicRecord[] $literature
+     */
+    public function setLiterature(iterable $literature): self
+    {
+        $this->literature = new ArrayCollection();
+
+        foreach ($literature as $bibliographicRecord) {
+            $this->literature->add($bibliographicRecord);
+        }
 
         return $this;
     }

@@ -31,31 +31,21 @@ see <http://www.gnu.org/licenses/>.
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>{{ 'controller.letter.show.letter.label.date'|trans }}</th>
-                <td>{{ letter.date|date('d.m.Y') }}</td>
-            </tr>
-            <tr>
-                <th>{{ 'controller.letter.show.letter.label.senders'|trans }}</th>
-                <td>{{ self.format_senders(letter.senders) }}</td>
-            </tr>
-            <tr>
-                <th>{{ 'controller.letter.show.letter.label.recipient'|trans }}</th>
-                <td>{{ self.format_recipient(letter.recipient) }}</td>
-            </tr>
-            <tr>
-                <th>{{ 'controller.letter.show.letter.label.text'|trans }}</th>
-                <td>{{ letter.text }}</td>
-            </tr>
+            {{ self.format_row('date', letter.date|date('d.m.Y')) }}
+            {{ self.format_row('senders', letter.senders|map(sender => self.format_person(sender))|join(', ')) }}
+            {{ self.format_row('recipient', self.format_recipient(letter.recipient)) }}
+            {{ self.format_row('literature', letter.literature|map(record => record.shortName)|join(', ')|raw) }}
+            {{ self.format_row('text', letter.text) }}
         </tbody>
     </table>
 
 {% endblock %}
 
-{%- macro format_senders(senders) -%}
-    {% import _self as self %}
-
-    {{ senders|map(sender => self.format_person(sender))|join(', ')|raw }}
+{%- macro format_row(name, value) -%}
+    <tr>
+        <th>{{ ('controller.letter.show.letter.label.'~name)|trans }}</th>
+        <td>{{ value|raw }}</td>
+    </tr>
 {%- endmacro -%}
 
 {%- macro format_recipient(recipient) -%}

@@ -28,7 +28,7 @@ see <http://www.gnu.org/licenses/>.
         <title>{% block title %}{{ ('controller.'~controller~'.'~method~'.title')|trans }}{% endblock %} – {{ 'page.label'|trans }}</title>
 
         {% block stylesheets %}
-            <link href="{{ asset('build/css/'~controller~'/'~method~'.css') }}" rel="stylesheet">
+            {{ encore_entry_link_tags('css/'~controller~'/'~method) }}
         {% endblock %}
     </head>
 
@@ -65,7 +65,7 @@ see <http://www.gnu.org/licenses/>.
                     <div class="col-2"></div>
                     <div class="col-10">
                         <span class="text-muted">
-                            &copy; {{ 'now'|date('Y') }} – {{ 'page.footer'|trans }}
+                            {{ 'page.footer'|trans }}
                         </span>
                     </div>
                 </div>

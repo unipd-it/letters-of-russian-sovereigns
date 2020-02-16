@@ -43,6 +43,7 @@ controller:
           date: Дата
           senders: Отправитель
           recipient: Получатель
+          literature: Литература
           text: Текст письма
   person:
     list:
@@ -59,10 +60,14 @@ controller:
           dateOfBirth: Дата рождения
           dateOfDeath: Дата смерти
           positionsHeld: Занимаемые должности
+  bibliography:
+    list:
+      title: Библиография
 
 page:
   label: Письма русских государей к Венецианской республике
   menu:
     index: Главная
     dataBase: База данных
-  footer: Отдел лингвистических и литературоведческих исследований Падуанского университета
+    bibliography: Библиография
+  footer: © 2020 – Отдел лингвистических и литературоведческих исследований Падуанского университета

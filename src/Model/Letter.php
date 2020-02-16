@@ -26,6 +26,7 @@ declare(strict_types=1);
 namespace App\Model;
 
 use DateTimeInterface;
+use Vyfony\Bundle\BibliographyBundle\Persistence\Entity\BibliographicRecord;
 
 /**
  * @author Anton Dyshkant <vyshkant@gmail.com>
@@ -58,15 +59,28 @@ final class Letter
     private $text;
 
     /**
-     * @param Person[] $senders
+     * @var BibliographicRecord[]
      */
-    public function __construct(int $id, DateTimeInterface $date, array $senders, ?Person $recipient, string $text)
-    {
+    private $literature;
+
+    /**
+     * @param Person[]              $senders
+     * @param BibliographicRecord[] $literature
+     */
+    public function __construct(
+        int $id,
+        DateTimeInterface $date,
+        array $senders,
+        ?Person $recipient,
+        string $text,
+        array $literature
+    ) {
         $this->id = $id;
         $this->date = $date;
         $this->senders = $senders;
         $this->recipient = $recipient;
         $this->text = $text;
+        $this->literature = $literature;
     }
 
     public function getId(): int
@@ -80,7 +94,7 @@ final class Letter
     }
 
     /**
-     * @return array|Person[]
+     * @return Person[]
      */
     public function getSenders(): array
     {
@@ -95,5 +109,13 @@ final class Letter
     public function getText(): string
     {
         return $this->text;
+    }
+
+    /**
+     * @return BibliographicRecord[]
+     */
+    public function getLiterature(): array
+    {
+        return $this->literature;
     }
 }

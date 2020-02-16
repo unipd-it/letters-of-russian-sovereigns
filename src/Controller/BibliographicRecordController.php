@@ -1,3 +1,7 @@
+<?php
+
+declare(strict_types=1);
+
 /*
  * This file is part of «Letters of Russian sovereigns to the Republic of Venice» database.
  *
@@ -19,31 +23,30 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-const Encore = require('@symfony/webpack-encore');
+namespace App\Controller;
 
-if (!Encore.isRuntimeEnvironmentConfigured()) {
-    Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Annotation\Route;
+use Vyfony\Bundle\BibliographyBundle\Persistence\Repository\BibliographicRecordRepository;
+
+/**
+ * @author Anton Dyshkant <vyshkant@gmail.com>
+ *
+ * @Route("/bibliography/record")
+ */
+final class BibliographicRecordController extends AbstractController
+{
+    /**
+     * @Route("/list", name="bibiliograpic_record__list", methods={"GET"})
+     * @Template("bibliography/list.html.twig")
+     */
+    public function list(BibliographicRecordRepository $bibliographicRecordRepository): array
+    {
+        return [
+            'controller' => 'bibliography',
+            'method' => 'list',
+            'records' => $bibliographicRecordRepository->findAll(),
+        ];
+    }
 }
-
-Encore
-    .setOutputPath('public/build/')
-    .setPublicPath('/build')
-    .cleanupOutputBeforeBuild()
-    .splitEntryChunks()
-    .enableSingleRuntimeChunk()
-    .enableSourceMaps(!Encore.isProduction())
-    .enableVersioning(Encore.isProduction())
-    .enableBuildNotifications()
-    .enableSassLoader()
-    .configureBabelPresetEnv((config) => {
-        config.useBuiltIns = 'usage';
-        config.corejs = 3;
-    })
-    .addStyleEntry('css/person/list', './assets/scss/person/list.scss')
-    .addStyleEntry('css/person/show', './assets/scss/person/show.scss')
-    .addStyleEntry('css/letter/list', './assets/scss/letter/list.scss')
-    .addStyleEntry('css/letter/show', './assets/scss/letter/show.scss')
-    .addStyleEntry('css/bibliography/list', './assets/scss/bibliography/list.scss')
-;
-
-module.exports = Encore.getWebpackConfig();

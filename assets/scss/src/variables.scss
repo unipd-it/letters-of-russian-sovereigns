@@ -19,4 +19,8 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-@import '../base';
+@import '~bootstrap/scss/bootstrap';
+
+$mainColor: $light;
+$grayColor: $gray-200;
+$whiteColor: $white;

@@ -21,6 +21,8 @@
 
 const Encore = require('@symfony/webpack-encore');
 
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+
 if (!Encore.isRuntimeEnvironmentConfigured()) {
     Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
 }
@@ -39,11 +41,17 @@ Encore
         config.useBuiltIns = 'usage';
         config.corejs = 3;
     })
-    .addStyleEntry('css/person/list', './assets/scss/person/list.scss')
-    .addStyleEntry('css/person/show', './assets/scss/person/show.scss')
-    .addStyleEntry('css/letter/list', './assets/scss/letter/list.scss')
-    .addStyleEntry('css/letter/show', './assets/scss/letter/show.scss')
-    .addStyleEntry('css/bibliography/list', './assets/scss/bibliography/list.scss')
+    .addStyleEntry('css/person/list', './assets/scss/pages/person/list.scss')
+    .addStyleEntry('css/person/show', './assets/scss/pages/person/show.scss')
+    .addStyleEntry('css/letter/list', './assets/scss/pages/letter/list.scss')
+    .addStyleEntry('css/letter/show', './assets/scss/pages/letter/show.scss')
+    .addStyleEntry('css/bibliography/list', './assets/scss/pages/bibliography/list.scss')
+    .addPlugin(new CopyWebpackPlugin([
+        {
+            from: './assets/fonts',
+            to: 'fonts'
+        }
+    ]))
 ;
 
 module.exports = Encore.getWebpackConfig();

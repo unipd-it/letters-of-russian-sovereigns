@@ -29,13 +29,13 @@ see <http://www.gnu.org/licenses/>.
 
     {% import _self as self %}
 
-    <table class="table">
+    <table class="table lors-show-table">
         <tbody>
             {{ self.format_row('date', letter.date|date('d.m.Y')) }}
             {{ self.format_row('senders', letter.senders|map(sender => self.format_person(sender))|join(', ')) }}
             {{ self.format_row('recipient', self.format_recipient(letter.recipient)) }}
             {{ self.format_row('literature', letter.literature|map(record => record.shortName)|join(', ')|raw) }}
-            {{ self.format_row('text', letter.text) }}
+            {{ self.format_row('text', self.format_text(letter.text)) }}
         </tbody>
     </table>
 
@@ -60,4 +60,12 @@ see <http://www.gnu.org/licenses/>.
 
 {%- macro format_person(person) -%}
     <a href="{{ path('person__show', {'id': person.id}) }}">{{ person.fullName }}</a>
+{%- endmacro -%}
+
+{%- macro format_text(text) -%}
+    <div class="lors-original-text-container">
+        <div class="lors-text-area lors-original-text">
+            {{- text|nl2br|raw -}}
+        </div>
+    </div>
 {%- endmacro -%}

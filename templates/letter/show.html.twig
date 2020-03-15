@@ -65,7 +65,7 @@ see <http://www.gnu.org/licenses/>.
 {%- macro format_text(text) -%}
     <div class="lors-original-text-container">
         <div class="lors-text-area lors-original-text">
-            {{- text|nl2br|raw -}}
+            {{- text|raw|nl2br -}}
         </div>
     </div>
 {%- endmacro -%}

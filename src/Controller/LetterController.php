@@ -29,6 +29,7 @@ use App\Persistence\Repository\Letter\LetterRepositoryInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Vyfony\Bundle\FilterableTableBundle\Table\TableInterface;
 
 /**
  * @Route("/letter")
@@ -42,9 +43,17 @@ final class LetterController extends AbstractController
      */
     private $letterRepository;
 
-    public function __construct(LetterRepositoryInterface $letterRepository)
-    {
+    /**
+     * @var TableInterface
+     */
+    private $filterableTable;
+
+    public function __construct(
+        LetterRepositoryInterface $letterRepository,
+        TableInterface $filterableTable
+    ) {
         $this->letterRepository = $letterRepository;
+        $this->filterableTable = $filterableTable;
     }
 
     /**
@@ -57,7 +66,8 @@ final class LetterController extends AbstractController
         return [
             'controller' => 'letter',
             'method' => 'list',
-            'letters' => $this->letterRepository->getAll(),
+            'filterForm' => $this->filterableTable->getFormView(),
+            'table' => $this->filterableTable->getTableMetadata(),
         ];
     }
 

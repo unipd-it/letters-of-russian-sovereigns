@@ -96,17 +96,8 @@
     "doctrine/reflection": {
         "version": "v1.1.0"
     },
-    "easycorp/easy-log-handler": {
-        "version": "1.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "1.0",
-            "ref": "70062abc2cd58794d2a90274502f81b55cd9951b"
-        },
-        "files": [
-            "config/packages/dev/easy_log_handler.yaml"
-        ]
+    "doctrine/sql-formatter": {
+        "version": "1.1.1"
     },
     "egulias/email-validator": {
         "version": "2.1.15"
@@ -140,9 +131,6 @@
     },
     "jakub-onderka/php-parallel-lint": {
         "version": "v1.0.0"
-    },
-    "jdorn/sql-formatter": {
-        "version": "v1.2.17"
     },
     "knplabs/knp-menu": {
         "version": "v3.1.0"
@@ -206,6 +194,9 @@
     },
     "psr/log": {
         "version": "1.1.2"
+    },
+    "psr/simple-cache": {
+        "version": "1.0.1"
     },
     "ralouphie/getallheaders": {
         "version": "3.0.3"
@@ -474,6 +465,9 @@
     "symfony/polyfill-php73": {
         "version": "v1.13.1"
     },
+    "symfony/polyfill-php80": {
+        "version": "v1.18.1"
+    },
     "symfony/process": {
         "version": "v5.0.4"
     },
@@ -654,8 +648,8 @@
     "vyfony/bibliography-bundle": {
         "version": "v0.0.6"
     },
-    "vyfony/mysqldump-bundle": {
-        "version": "v0.3.0"
+    "vyfony/filterable-table-bundle": {
+        "version": "v0.4.0"
     },
     "webmozart/assert": {
         "version": "1.6.0"

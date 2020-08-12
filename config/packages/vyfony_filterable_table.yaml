@@ -17,6 +17,14 @@
 # «Letters of Russian sovereigns to the Republic of Venice» database,
 # see <http://www.gnu.org/licenses/>.
 
-doctrine_migrations:
-  migrations_paths:
-    DoctrineMigrations: '%kernel.project_dir%/src/Persistence/Migrations'
+vyfony_filterable_table:
+  table_configurator: App\FilterableTable\LettersTableConfigurator
+  filter_configurator: App\FilterableTable\LettersFilterConfigurator
+  entity_class: App\Persistence\Entity\LetterEntity
+  default_sort_by: id
+  default_sort_order: asc
+  list_route: letter__list
+  show_route: letter__show
+  show_route_parameters: {id: id}
+  page_size: 10
+  paginator_tail_length: 3

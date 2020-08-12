@@ -17,6 +17,14 @@
 # «Letters of Russian sovereigns to the Republic of Venice» database,
 # see <http://www.gnu.org/licenses/>.
 
-doctrine_migrations:
-  migrations_paths:
-    DoctrineMigrations: '%kernel.project_dir%/src/Persistence/Migrations'
+version: '3.4'
+
+services:
+
+  db:
+    image: mysql:5
+    restart: always
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    ports:
+      - 3306:3306

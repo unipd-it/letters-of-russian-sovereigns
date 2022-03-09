@@ -29,6 +29,9 @@ controller:
         password: Пароль
         rememberMe: Запомнить меня
         signIn: Войти
+  post:
+    show:
+      admin: Редактировать запись в админке
   information:
     aboutSite: О сайте
   letter:
@@ -49,6 +52,7 @@ controller:
           submitButton: Искать
     show:
       title: Письмо
+      admin: Просмотреть письмо в админке
       letter:
         label:
           date: Дата

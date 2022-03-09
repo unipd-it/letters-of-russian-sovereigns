@@ -39,6 +39,16 @@
         </tbody>
     </table>
 
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="container">
+            <a href="{{ path('letter_letter_edit', {'id': letter.id}) }}"
+               target="_blank"
+               class="h5"
+            >
+                {{- 'admin'|transWithContext(translationContext) -}}
+            </a>
+        </div>
+    {% endif %}
 {% endblock %}
 
 {%- macro format_row(name, value) -%}

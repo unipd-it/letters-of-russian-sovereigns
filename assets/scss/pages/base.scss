@@ -8,7 +8,7 @@
  * GNU General Public License as published by the Free Software Foundation, version 3.
  *
  * «Letters of Russian sovereigns to the Republic of Venice» database is distributed
- * in the hope  that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
  * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  *
@@ -92,7 +92,7 @@ html {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
     overflow: hidden;
-    background-color: $mainColor;
+    background-color: $veryLightColor;
   }
 
   .lors-footer {
@@ -102,5 +102,47 @@ html {
     height: $footerHeight;
     line-height: $footerHeight;
     background-color: #f5f5f5;
+  }
+}
+
+.lors-btn {
+  font-weight: bold;
+
+  &-dark {
+    background-color: $darkColor;
+    border-color: $darkColor;
+    color: $lightColor;
+
+    &:hover {
+      color: $lightColor;
+    }
+  }
+
+  &-light {
+    background-color: $lightColor;
+    border-color: $darkColor;
+    color: $darkColor;
+
+    &:hover {
+      color: $darkColor;
+    }
+  }
+
+  &-very-light {
+    background-color: $veryLightColor;
+    border-color: $darkColor;
+    color: $darkColor;
+
+    &:hover {
+      color: $darkColor;
+    }
+  }
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &:focus {
+    box-shadow: none;
   }
 }

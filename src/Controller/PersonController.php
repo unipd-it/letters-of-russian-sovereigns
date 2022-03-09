@@ -12,7 +12,7 @@ declare(strict_types=1);
  * GNU General Public License as published by the Free Software Foundation, version 3.
  *
  * «Letters of Russian sovereigns to the Republic of Venice» database is distributed
- * in the hope  that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
  * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  *
@@ -25,51 +25,28 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Persistence\Repository\Person\PersonRepositoryInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use App\Persistence\Entity\Letter\Person;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/person")
- *
- * @author Anton Dyshkant <vyshkant@gmail.com>
  */
 final class PersonController extends AbstractController
 {
     /**
-     * @var PersonRepositoryInterface
-     */
-    private $personRepository;
-
-    public function __construct(PersonRepositoryInterface $personRepository)
-    {
-        $this->personRepository = $personRepository;
-    }
-
-    /**
-     * @Route("/list", name="person__list", methods={"GET"})
-     * @Template("person/list.html.twig")
-     */
-    public function list(): array
-    {
-        return [
-            'controller' => 'person',
-            'method' => 'list',
-            'people' => $this->personRepository->getAll(),
-        ];
-    }
-
-    /**
      * @Route("/show/{id}", name="person__show", methods={"GET"})
-     * @Template("person/show.html.twig")
      */
-    public function show(int $id): array
+    public function show(Person $person): Response
     {
-        return [
-            'controller' => 'person',
-            'method' => 'show',
-            'person' => $this->personRepository->get($id),
-        ];
+        return $this->render(
+            'person/show.html.twig',
+            [
+                'translationContext' => 'controller.person.show',
+                'assetsContext' => 'person/show',
+                'person' => $person,
+            ]
+        );
     }
 }

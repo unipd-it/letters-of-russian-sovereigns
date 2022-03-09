@@ -12,7 +12,7 @@ declare(strict_types=1);
  * GNU General Public License as published by the Free Software Foundation, version 3.
  *
  * «Letters of Russian sovereigns to the Republic of Venice» database is distributed
- * in the hope  that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
  * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  *
@@ -27,7 +27,9 @@ return [
     'files_list' => [
         '.phan.dist',
         '.php_cs.dist',
+        'config/bootstrap.php',
         'config/bundles.php',
+        'config/preload.php',
         'public/index.php',
     ],
     'directory_list' => [
@@ -102,7 +104,7 @@ return [
         'PhanTypeInvalidThrowsIsTrait',
 //        'PhanTypeInvalidThrowsIsInterface', // interfaces are thrown intentional
         'PhanTypeMagicVoidWithReturn',
-        'PhanTypeMismatchArgument',
+//        'PhanTypeMismatchArgument', // Phan does not work good with type inference
         'PhanTypeMismatchArgumentInternal',
         'PhanPartialTypeMismatchArgument',
         'PhanPartialTypeMismatchArgumentInternal',
@@ -131,7 +133,7 @@ return [
         'PhanPossiblyFalseTypeReturn',
 //        'PhanTypeMismatchDeclaredReturn', // Phan does not work with collection content type annotations
         'PhanTypeMismatchDeclaredReturnNullable',
-        'PhanTypeMismatchDeclaredParam',
+//        'PhanTypeMismatchDeclaredParam', // Phan does not work with collection content type annotations
         'PhanTypeMismatchDeclaredParamNullable',
         'PhanTypeMissingReturn',
         'PhanTypeNonVarPassByRef',
@@ -180,7 +182,7 @@ return [
         'PhanParamRedefined',
         'PhanParamSignatureRealMismatchReturnType',
         'PhanParamSignatureRealMismatchReturnTypeInternal',
-        'PhanParamSignaturePHPDocMismatchReturnType',
+//        'PhanParamSignaturePHPDocMismatchReturnType', // commented out to allow type overloading in repositories
         'PhanParamSignatureRealMismatchTooManyRequiredParameters',
         'PhanParamSignatureRealMismatchTooManyRequiredParametersInternal',
         'PhanParamSignaturePHPDocMismatchTooManyRequiredParameters',
@@ -207,7 +209,7 @@ return [
         'PhanParamSignaturePHPDocMismatchParamNotVariadic',
         'PhanParamSignatureRealMismatchParamType',
         'PhanParamSignatureRealMismatchParamTypeInternal',
-        'PhanParamSignaturePHPDocMismatchParamType',
+//        'PhanParamSignaturePHPDocMismatchParamType', // produces false positive error
         'PhanNoopArray',
         'PhanNoopClosure',
         'PhanNoopConstant',
@@ -267,7 +269,7 @@ return [
         'PhanAccessClassInternal',
         'PhanAccessClassConstantInternal',
         'PhanAccessPropertyInternal',
-        'PhanAccessMethodInternal',
+//        'PhanAccessMethodInternal', // useless
         'PhanAccessWrongInheritanceCategory',
         'PhanAccessWrongInheritanceCategoryInternal',
         'PhanAccessExtendsFinalClass',

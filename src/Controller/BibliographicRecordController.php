@@ -12,7 +12,7 @@ declare(strict_types=1);
  * GNU General Public License as published by the Free Software Foundation, version 3.
  *
  * «Letters of Russian sovereigns to the Republic of Venice» database is distributed
- * in the hope  that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
  * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  *
@@ -25,28 +25,32 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use App\Persistence\Repository\Bibliography\BibliographicRecordRepository;
+use App\Persistence\Repository\Content\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Vyfony\Bundle\BibliographyBundle\Persistence\Repository\BibliographicRecordRepository;
 
 /**
- * @author Anton Dyshkant <vyshkant@gmail.com>
- *
  * @Route("/bibliography/record")
  */
 final class BibliographicRecordController extends AbstractController
 {
     /**
-     * @Route("/list", name="bibiliograpic_record__list", methods={"GET"})
-     * @Template("bibliography/list.html.twig")
+     * @Route("/list", name="bibliographic_record__list", methods={"GET"})
      */
-    public function list(BibliographicRecordRepository $bibliographicRecordRepository): array
-    {
-        return [
-            'controller' => 'bibliography',
-            'method' => 'list',
-            'records' => $bibliographicRecordRepository->findAll(),
-        ];
+    public function list(
+        BibliographicRecordRepository $bibliographicRecordRepository,
+        PostRepository $postRepository
+    ): Response {
+        return $this->render(
+            'bibliography/list.html.twig',
+            [
+                'translationContext' => 'controller.bibliography.list',
+                'assetsContext' => 'bibliography/list',
+                'post' => $postRepository->findBibliography(),
+                'records' => $bibliographicRecordRepository->findAll(),
+            ]
+        );
     }
 }

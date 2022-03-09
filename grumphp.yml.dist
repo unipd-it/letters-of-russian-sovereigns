@@ -7,7 +7,7 @@
 # GNU General Public License as published by the Free Software Foundation, version 3.
 #
 # «Letters of Russian sovereigns to the Republic of Venice» database is distributed
-# in the hope  that it will be useful, but WITHOUT ANY WARRANTY; without even
+# in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
 # the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 # See the GNU General Public License for more details.
 #
@@ -17,14 +17,12 @@
 # «Letters of Russian sovereigns to the Republic of Venice» database,
 # see <http://www.gnu.org/licenses/>.
 
-parameters:
+grumphp:
   hide_circumvention_tip: true
   process_timeout: null
-  git_dir: .
-  bin_dir: vendor/bin
   tasks:
     phpversion:
-      project: '7.2'
+      project: '7.4'
       metadata:
         priority: 0
     git_blacklist:
@@ -53,25 +51,26 @@ parameters:
       metadata:
         priority: -70
     phpcsfixer2:
-      config: .php_cs.dist
+      config: .php-cs-fixer.dist.php
       metadata:
         priority: -90
     phpcs:
       standard: PSR2
       ignore_patterns:
+        - '/migrations/*'
         - '/node_modules/*'
-        - '/src/Persistence/DataFixtures/*'
-        - '/src/Persistence/Migrations/*'
         - '/tests/*'
         - '/var/*'
         - '/vendor/*'
       metadata:
         priority: -100
-    phpunitbridge:
+    phpunit:
       always_execute: true
       metadata:
         priority: -110
-    securitychecker:
+    securitychecker_enlightn:
+      lockfile: ./composer.lock
+      run_always: true
       metadata:
         priority: -120
     phan:

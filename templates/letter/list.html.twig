@@ -1,47 +1,38 @@
 {#
-
-This file is part of «Letters of Russian sovereigns to the Republic of Venice» database.
-
-Copyright (c) Department of Linguistic and Literary Studies of the University of Padova
-
-«Letters of Russian sovereigns to the Republic of Venice» database is free software:
-you can redistribute it and/or modify it under the terms of the
-GNU General Public License as published by the Free Software Foundation, version 3.
-
-«Letters of Russian sovereigns to the Republic of Venice» database is distributed
-in the hope  that it will be useful, but WITHOUT ANY WARRANTY; without even
-the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-See the GNU General Public License for more details.
-
-For the full copyright and license information, please view the LICENSE
-file that was distributed with this source code. If you have not received
-a copy of the GNU General Public License along with
-«Letters of Russian sovereigns to the Republic of Venice» database,
-see <http://www.gnu.org/licenses/>.
-
+# This file is part of «Letters of Russian sovereigns to the Republic of Venice» database.
+#
+# Copyright (c) Department of Linguistic and Literary Studies of the University of Padova
+#
+# «Letters of Russian sovereigns to the Republic of Venice» database is free software:
+# you can redistribute it and/or modify it under the terms of the
+# GNU General Public License as published by the Free Software Foundation, version 3.
+#
+# «Letters of Russian sovereigns to the Republic of Venice» database is distributed
+# in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+# the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details.
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code. If you have not received
+# a copy of the GNU General Public License along with
+# «Letters of Russian sovereigns to the Republic of Venice» database,
+# see <http://www.gnu.org/licenses/>.
 #}
 
 {% extends 'base.html.twig' %}
 
-{% block page_content %}
-    <table class="table">
-        <thead>
-            <tr>
-                <th>{{ 'controller.letter.list.table.column.id'|trans }}</th>
-                <th>{{ 'controller.letter.list.table.column.date'|trans }}</th>
-                <th>{{ 'controller.letter.list.table.column.senders'|trans }}</th>
-                <th>{{ 'controller.letter.list.table.column.recipient'|trans }}</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for letter in letters %}
-            <tr>
-                <td><a href="{{ path('letter__show', {'id': letter.id}) }}">{{ letter.id }}</a></td>
-                <td>{{ letter.date|date('d.m.Y') }}</td>
-                <td>{{ letter.senders|map(sender => sender.fullName)|join(', ') }}</td>
-                <td>{{ letter.recipient.fullName|default('-') }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-{% endblock %}
+{% import '@VyfonyFilterableTable/filterable_table.html.twig' as filterable_table %}
+{% import _self as self %}
+
+{%- block page_content -%}
+    {% import 'content/post.html.twig' as post_helper %}
+
+    {{ post_helper.render_post_body(post, false) }}
+
+    {{ filterable_table.render_filter(filterForm) }}
+
+    <div class="row">
+        {{ filterable_table.render_table(table) }}
+    </div>
+{%- endblock -%}
+

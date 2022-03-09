@@ -7,7 +7,7 @@
 # GNU General Public License as published by the Free Software Foundation, version 3.
 #
 # «Letters of Russian sovereigns to the Republic of Venice» database is distributed
-# in the hope  that it will be useful, but WITHOUT ANY WARRANTY; without even
+# in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
 # the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 # See the GNU General Public License for more details.
 #
@@ -18,6 +18,19 @@
 # see <http://www.gnu.org/licenses/>.
 
 controller:
+  index:
+    index:
+      title: Главная
+  security:
+    login:
+      title: Авторизация
+      form:
+        username: Имя пользователя
+        password: Пароль
+        rememberMe: Запомнить меня
+        signIn: Войти
+  information:
+    aboutSite: О сайте
   letter:
     list:
       title: Список писем
@@ -32,10 +45,8 @@ controller:
         sender: Отправитель
         recipient: Получатель
         text: Текст
-        disablePaginator: показать на одной странице
-        resetButton: Сбросить фильтры
-        submitButton: Искать
-        searchInFoundButton: Искать в найденном
+        controls:
+          submitButton: Искать
     show:
       title: Письмо
       letter:
@@ -68,6 +79,7 @@ page:
   label: Письма русских государей к Венецианской республике
   menu:
     index: Главная
+    aboutSite: О сайте
     dataBase: База данных
     bibliography: Библиография
   footer: © 2020 – Отдел лингвистических и литературоведческих исследований Падуанского университета

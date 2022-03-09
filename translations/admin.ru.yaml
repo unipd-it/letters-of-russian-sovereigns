@@ -1,0 +1,167 @@
+# This file is part of «Letters of Russian sovereigns to the Republic of Venice» database.
+#
+# Copyright (c) Department of Linguistic and Literary Studies of the University of Padova
+#
+# «Letters of Russian sovereigns to the Republic of Venice» database is free software:
+# you can redistribute it and/or modify it under the terms of the
+# GNU General Public License as published by the Free Software Foundation, version 3.
+#
+# «Letters of Russian sovereigns to the Republic of Venice» database is distributed
+# in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+# the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details.
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code. If you have not received
+# a copy of the GNU General Public License along with
+# «Letters of Russian sovereigns to the Republic of Venice» database,
+# see <http://www.gnu.org/licenses/>.
+
+menu:
+  groups:
+    content:
+      label: Контент
+    letter:
+      label: Письма
+    security:
+      label: Безопасность
+    bibliography:
+      label: Библиография
+  paragraphs:
+    post:
+      label: Страницы
+    user:
+      label: Пользователи
+    letter:
+      label: Письма
+    person:
+      label: Исторические персонажи
+    bibliographicRecord:
+      label: Библиографические записи
+    author:
+      label: Авторы
+
+list:
+  post:
+    fields:
+      id: Внутренний идентификатор
+      title: Заголовок
+  user:
+    fields:
+      id: Внутренний идентификатор
+      username: Имя пользователя (логин)
+      fullName: Полное имя
+      roles: Роли
+  letter:
+    fields:
+      id: Внутренний идентификатор
+      date: Дата
+      senders: Отправители
+      recipient: Получатель
+  person:
+    fields:
+      id: Внутренний идентификатор
+      fullName: Полное имя
+  bibliographicRecord:
+    fields:
+      shortName: Краткое название
+      title: Наименование работы
+      year: Год публикации
+  author:
+    fields:
+      fullName: Полное имя
+
+form:
+  post:
+    fields:
+      title: Заголовок
+      body: Содержимое
+    section:
+      common:
+        label: Страница
+  user:
+    fields:
+      id: Внутренний идентификатор
+      username: Имя пользователя (логин)
+      fullName: Полное имя
+      roles: Роли
+      plainPassword: Новый пароль
+    section:
+      common:
+        label: Пользователь
+  letter:
+    tab:
+      basicInformation:
+        label: Основная информация
+      sources:
+        label: Источники
+    section:
+      metadata:
+        label: Метаданные
+      text:
+        label: Текст письма
+      sources:
+        label: Источники
+    fields:
+      date: Дата
+      senders: Отправители
+      recipient: Получатель
+      text: Текст
+      literature: Литература
+  person:
+    section:
+      basicInformation:
+        label: Основная информация
+    fields:
+      fullName: Отображаемое имя
+      description: Описание
+      isSender: Отправитель
+      isRecipient: Получатель
+  bibliographicRecord:
+    tab:
+      main:
+        label: Основная информация
+    section:
+      basicInformation:
+        label: Основная информация
+      filters:
+        label: Данные для поиска
+    fields:
+      shortName: Краткое название
+      title: Наименование работы
+      year: Год публикации
+      authors: Авторы работы
+      formalNotation: Отображаемое значение (формальная запись)
+  author:
+    section:
+      data:
+        label: Сведения об авторе
+    fields:
+      fullName: Полное имя
+
+post_list: Страницы
+post_create: Добавить новую страницу
+post_delete: Удалить страницу
+user_list: Пользователи
+user_create: Добавить нового пользователя
+user_delete: Удалить пользователя
+letter_list: Письма
+letter_create: Добавить новое письмо
+letter_delete: Удалить письмо
+person_list: Исторические персонажи
+person_create: Добавить нового исторического персонажа
+person_delete: Удалить исторического персонажа
+bibliographicRecord_list: Библиографические записи
+bibliographicRecord_create: Добавить запись
+bibliographicRecord_delete: Удалить запись
+author_list: Авторы
+author_create: Добавить автора
+author_delete: Удалить автора
+
+userMenu:
+  logout:
+    label: Выйти
+
+tabMenu:
+  letter:
+    viewOnSite: Посмотреть письмо на сайте

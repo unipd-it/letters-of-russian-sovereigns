@@ -8,7 +8,7 @@
  * GNU General Public License as published by the Free Software Foundation, version 3.
  *
  * «Letters of Russian sovereigns to the Republic of Venice» database is distributed
- * in the hope  that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
  * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  *
@@ -20,6 +20,7 @@
  */
 
 @import '../base';
+@import '~select2/dist/css/select2.min.css';
 
 @mixin sorted-column($isAsc){
   &:after {
@@ -41,8 +42,75 @@
   }
 }
 
-main.lors-main {
-  table {
+.lors-main {
+  form {
+    > div {
+      max-width: calc(100% + 30px);
+      min-width: calc(100% + 30px);
+    }
+
+    .vyfony-filterable-table-bundle-form-group {
+      @extend .col-4;
+      margin-bottom: 10px;
+
+      label {
+        margin-bottom: 0;
+      }
+
+      .select2-container {
+        width: 100% !important;
+
+        .select2-selection--multiple {
+          padding-top: 1px;
+
+          .select2-selection__choice {
+            max-width: calc(100% - 5px);
+            margin-top: 0;
+            line-height: 18px;
+
+            button.select2-selection__choice__remove {
+              font-family: Arial, Helvetica, sans-serif;
+            }
+          }
+
+          .select2-search--inline {
+            .select2-search__field {
+              margin-top: 0;
+              margin-bottom: 1px;
+            }
+          }
+        }
+      }
+
+      input[type=text][data-vyfony-filterable-table-filter-parameter] {
+        height: 32px;
+        border: 1px solid #aaaaaa;
+        border-radius: 4px;
+        padding: 5px;
+
+        &:focus {
+          border: solid #000000 1px;
+          outline: 0;
+          box-shadow: none;
+        }
+      }
+    }
+
+    .vyfony-filterable-table-bundle-button-form-group {
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+
+    [data-vyfony-filterable-table-reset-button] {
+      display: none;
+    }
+
+    [data-vyfony-filterable-table-search-in-found-button] {
+      display: none;
+    }
+  }
+
+  table[data-vyfony-filterable-table] {
     th[data-vyfony-filterable-table-sortable] {
       cursor: pointer;
       position: relative;
@@ -65,41 +133,5 @@ main.lors-main {
         }
       }
     }
-
-
-
-    th,
-    td {
-      &:nth-child(1),
-      &:nth-child(1) {
-        width: 24px;
-      }
-
-      &:nth-child(2),
-      &:nth-child(2) {
-        min-width: 50px;
-      }
-    }
-
-    th:nth-child(2),
-    td:nth-child(2) {
-      min-width: 50px;
-    }
-  }
-
-  form {
-    .vyfony-filterable-table-bundle-form-group {
-      @extend .col-4;
-    }
-
-    .vyfony-filterable-table-bundle-button-form-group {
-      padding-right: 15px;
-      padding-left: 15px;
-    }
-  }
-
-  ul {
-    margin-left: auto;
-    margin-right: auto;
   }
 }

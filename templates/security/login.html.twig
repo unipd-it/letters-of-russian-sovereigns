@@ -1,0 +1,66 @@
+{#
+# This file is part of «Letters of Russian sovereigns to the Republic of Venice» database.
+#
+# Copyright (c) Department of Linguistic and Literary Studies of the University of Padova
+#
+# «Letters of Russian sovereigns to the Republic of Venice» database is free software:
+# you can redistribute it and/or modify it under the terms of the
+# GNU General Public License as published by the Free Software Foundation, version 3.
+#
+# «Letters of Russian sovereigns to the Republic of Venice» database is distributed
+# in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+# the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details.
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code. If you have not received
+# a copy of the GNU General Public License along with
+# «Letters of Russian sovereigns to the Republic of Venice» database,
+# see <http://www.gnu.org/licenses/>.
+#}
+
+{% extends 'base.html.twig' %}
+
+{% block page_content %}
+
+    <form action="{{ path("security__login") }}" method="post" role="form">
+
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+        <label for="inputUsername">{{ 'form.username'|transWithContext(translationContext) }}</label>
+        <input
+                type="text"
+                value="{{ form.username.vars.value }}"
+                name="{{ form.username.vars.full_name }}"
+                id="inputUsername"
+                class="form-control"
+                required
+                autofocus
+        >
+
+        <label for="inputPassword">{{ 'form.password'|transWithContext(translationContext) }}</label>
+        <input
+                type="password"
+                name="{{ form.password.vars.full_name }}"
+                id="inputPassword"
+                class="form-control"
+                required
+        >
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me" checked>
+                {{ 'form.rememberMe'|transWithContext(translationContext) }}
+            </label>
+        </div>
+
+        <button class="btn lors-btn lors-btn-dark" type="submit">
+            {{ 'form.signIn'|transWithContext(translationContext) }}
+        </button>
+    </form>
+
+{% endblock %}

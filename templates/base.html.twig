@@ -1,34 +1,32 @@
 {#
-
-This file is part of «Letters of Russian sovereigns to the Republic of Venice» database.
-
-Copyright (c) Department of Linguistic and Literary Studies of the University of Padova
-
-«Letters of Russian sovereigns to the Republic of Venice» database is free software:
-you can redistribute it and/or modify it under the terms of the
-GNU General Public License as published by the Free Software Foundation, version 3.
-
-«Letters of Russian sovereigns to the Republic of Venice» database is distributed
-in the hope  that it will be useful, but WITHOUT ANY WARRANTY; without even
-the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-See the GNU General Public License for more details.
-
-For the full copyright and license information, please view the LICENSE
-file that was distributed with this source code. If you have not received
-a copy of the GNU General Public License along with
-«Letters of Russian sovereigns to the Republic of Venice» database,
-see <http://www.gnu.org/licenses/>.
-
+# This file is part of «Letters of Russian sovereigns to the Republic of Venice» database.
+#
+# Copyright (c) Department of Linguistic and Literary Studies of the University of Padova
+#
+# «Letters of Russian sovereigns to the Republic of Venice» database is free software:
+# you can redistribute it and/or modify it under the terms of the
+# GNU General Public License as published by the Free Software Foundation, version 3.
+#
+# «Letters of Russian sovereigns to the Republic of Venice» database is distributed
+# in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+# the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details.
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code. If you have not received
+# a copy of the GNU General Public License along with
+# «Letters of Russian sovereigns to the Republic of Venice» database,
+# see <http://www.gnu.org/licenses/>.
 #}
 
 <!doctype html>
-<html>
+<html lang="{{ app.request.locale }}">
     <head>
         <meta charset="utf-8">
-        <title>{% block title %}{{ ('controller.'~controller~'.'~method~'.title')|trans }}{% endblock %} – {{ 'page.label'|trans }}</title>
+        <title>{% block title %}{{ 'title'|transWithContext(translationContext) }}{% endblock %} – {{ 'page.label'|trans }}</title>
 
         {% block stylesheets %}
-            {{ encore_entry_link_tags('css/'~controller~'/'~method) }}
+            {{ encore_entry_link_tags('css/'~assetsContext) }}
         {% endblock %}
     </head>
 
@@ -47,8 +45,8 @@ see <http://www.gnu.org/licenses/>.
                 </div>
 
                 <main role="main" class="col-8 lors-main">
-                    <h1 class="border-bottom">{% block page_title %}{{ block('title') }}{% endblock %}</h1>
-                    <div>
+                    {% block page_title %}<h1 class="border-bottom">{{ block('title') }}</h1>{% endblock %}
+                    <div class="container pb-4">
                         {% block page_content %}{% endblock %}
                     </div>
                 </main>
@@ -72,6 +70,8 @@ see <http://www.gnu.org/licenses/>.
             </div>
         </footer>
 
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            {{ encore_entry_script_tags('js/'~assetsContext) }}
+        {% endblock %}
     </body>
 </html>

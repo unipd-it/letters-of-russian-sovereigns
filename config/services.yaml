@@ -7,7 +7,7 @@
 # GNU General Public License as published by the Free Software Foundation, version 3.
 #
 # «Letters of Russian sovereigns to the Republic of Venice» database is distributed
-# in the hope  that it will be useful, but WITHOUT ANY WARRANTY; without even
+# in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
 # the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 # See the GNU General Public License for more details.
 #
@@ -26,21 +26,16 @@ services:
     autoconfigure: true
 
   App\:
-    resource: '../src/*'
-    exclude: '../src/{Persistence/Entity,Persistence/Migrations,Kernel.php}'
+    resource: '../src/'
+    exclude:
+      - '../src/Persistence/Entity/'
+      - '../src/Kernel.php'
 
   App\Controller\:
-    resource: '../src/Controller'
+    resource: '../src/Controller/'
     tags: ['controller.service_arguments']
 
   App\Menu\MenuBuilder:
     arguments: ['@knp_menu.factory', '@request_stack']
     tags:
       - { name: knp_menu.menu_builder, method: createMainMenu, alias: main }
-
-  GuzzleHttp\ClientInterface: '@GuzzleHttp\Client'
-
-  GuzzleHttp\Client:
-    public: false
-
-  Symfony\Contracts\Translation\LocaleAwareInterface: '@translator'

@@ -12,7 +12,7 @@ declare(strict_types=1);
  * GNU General Public License as published by the Free Software Foundation, version 3.
  *
  * «Letters of Russian sovereigns to the Republic of Venice» database is distributed
- * in the hope  that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
  * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  *
@@ -29,9 +29,6 @@ use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-/**
- * @author Anton Dyshkant <vyshkant@gmail.com>
- */
 final class MenuBuilder
 {
     /**
@@ -63,12 +60,16 @@ final class MenuBuilder
         ;
 
         $menu
+            ->addChild('page.menu.aboutSite', ['route' => 'information__about_site'])
+        ;
+
+        $menu
             ->addChild('page.menu.dataBase', ['route' => 'letter__list'])
             ->setCurrent(\in_array($currentRoute, ['letter__list', 'letter__show'], true))
         ;
 
         $menu
-            ->addChild('page.menu.bibliography', ['route' => 'bibiliograpic_record__list'])
+            ->addChild('page.menu.bibliography', ['route' => 'bibliographic_record__list'])
         ;
 
         foreach ($menu->getChildren() as $child) {

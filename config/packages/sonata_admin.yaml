@@ -1,0 +1,110 @@
+# This file is part of «Letters of Russian sovereigns to the Republic of Venice» database.
+#
+# Copyright (c) Department of Linguistic and Literary Studies of the University of Padova
+#
+# «Letters of Russian sovereigns to the Republic of Venice» database is free software:
+# you can redistribute it and/or modify it under the terms of the
+# GNU General Public License as published by the Free Software Foundation, version 3.
+#
+# «Letters of Russian sovereigns to the Republic of Venice» database is distributed
+# in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+# the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details.
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code. If you have not received
+# a copy of the GNU General Public License along with
+# «Letters of Russian sovereigns to the Republic of Venice» database,
+# see <http://www.gnu.org/licenses/>.
+
+sonata_admin:
+  title: Письма русских государей
+  title_logo: build/images/none.png
+  dashboard:
+    blocks:
+      - { type: sonata.admin.block.admin_list, position: left }
+    groups:
+      security:
+        label_catalogue: admin
+        label: menu.groups.security.label
+        items:
+          - admin.user
+        roles: [ROLE_SUPER_ADMIN]
+      content:
+        label_catalogue: admin
+        label: menu.groups.content.label
+        items:
+          - admin.content.post
+        roles: [ROLE_EDITOR]
+      bibliography:
+        label_catalogue: admin
+        label: menu.groups.bibliography.label
+        items:
+          - admin.bibliography.bibliographic_record
+          - admin.bibliography.author
+        roles: [ROLE_EDITOR]
+      letter:
+        label_catalogue: admin
+        label: menu.groups.letter.label
+        items:
+          - admin.letter
+          - admin.person
+        roles: [ROLE_EDITOR]
+  options:
+    use_icheck: false
+    default_admin_route: edit
+  templates:
+    user_block: 'admin/user_block.html.twig'
+
+sonata_block:
+  blocks:
+    sonata.admin.block.admin_list:
+      contexts: [admin]
+
+services:
+  admin.content.post:
+    class: App\Admin\Content\PostAdmin
+    arguments: [null, App\Persistence\Entity\Content\Post, null]
+    calls:
+      - [setLabelTranslatorStrategy, ['@sonata.admin.label.strategy.noop']]
+    tags:
+      - { name: sonata.admin, manager_type: orm }
+  admin.user:
+    class: App\Admin\Security\UserAdmin
+    arguments:
+      - null
+      - App\Persistence\Entity\Security\User
+      - null
+      - '@security.password_hasher'
+    calls:
+      - [setLabelTranslatorStrategy, ['@sonata.admin.label.strategy.noop']]
+    tags:
+      - { name: sonata.admin, manager_type: orm }
+  admin.bibliography.bibliographic_record:
+    class: App\Admin\Bibliography\BibliographicRecordAdmin
+    arguments: [null, App\Persistence\Entity\Bibliography\BibliographicRecord, null]
+    calls:
+      - [setLabelTranslatorStrategy, ['@sonata.admin.label.strategy.noop']]
+    tags:
+      - { name: sonata.admin, manager_type: orm }
+  admin.bibliography.author:
+    class: App\Admin\Bibliography\AuthorAdmin
+    arguments: [null, App\Persistence\Entity\Bibliography\Author, null]
+    calls:
+      - [setLabelTranslatorStrategy, ['@sonata.admin.label.strategy.noop']]
+    tags:
+      - { name: sonata.admin, manager_type: orm }
+  admin.letter:
+    class: App\Admin\Letter\LetterAdmin
+    arguments: [null, App\Persistence\Entity\Letter\Letter, null]
+    calls:
+      - [setLabelTranslatorStrategy, ['@sonata.admin.label.strategy.noop']]
+    tags:
+      - { name: sonata.admin, manager_type: orm }
+  admin.person:
+    class: App\Admin\Letter\PersonAdmin
+    arguments: [null, App\Persistence\Entity\Letter\Person, null]
+    calls:
+      - [setLabelTranslatorStrategy, ['@sonata.admin.label.strategy.noop']]
+    tags:
+      - { name: sonata.admin, manager_type: orm }

@@ -1,29 +1,29 @@
 {#
-
-This file is part of «Letters of Russian sovereigns to the Republic of Venice» database.
-
-Copyright (c) Department of Linguistic and Literary Studies of the University of Padova
-
-«Letters of Russian sovereigns to the Republic of Venice» database is free software:
-you can redistribute it and/or modify it under the terms of the
-GNU General Public License as published by the Free Software Foundation, version 3.
-
-«Letters of Russian sovereigns to the Republic of Venice» database is distributed
-in the hope  that it will be useful, but WITHOUT ANY WARRANTY; without even
-the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-See the GNU General Public License for more details.
-
-For the full copyright and license information, please view the LICENSE
-file that was distributed with this source code. If you have not received
-a copy of the GNU General Public License along with
-«Letters of Russian sovereigns to the Republic of Venice» database,
-see <http://www.gnu.org/licenses/>.
-
+# This file is part of «Letters of Russian sovereigns to the Republic of Venice» database.
+#
+# Copyright (c) Department of Linguistic and Literary Studies of the University of Padova
+#
+# «Letters of Russian sovereigns to the Republic of Venice» database is free software:
+# you can redistribute it and/or modify it under the terms of the
+# GNU General Public License as published by the Free Software Foundation, version 3.
+#
+# «Letters of Russian sovereigns to the Republic of Venice» database is distributed
+# in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+# the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details.
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code. If you have not received
+# a copy of the GNU General Public License along with
+# «Letters of Russian sovereigns to the Republic of Venice» database,
+# see <http://www.gnu.org/licenses/>.
 #}
 
 {% extends 'base.html.twig' %}
 
-{% block page_title %}{{ block('title') }} №{{ letter.id }}{% endblock %}
+{% block title %}{{ parent() }} №{{ letter.id }}{% endblock %}
+
+{% block page_title %}<h1>{{ block('title') }}</h1>{% endblock %}
 
 {% block page_content %}
 
@@ -34,7 +34,7 @@ see <http://www.gnu.org/licenses/>.
             {{ self.format_row('date', letter.date|date('d.m.Y')) }}
             {{ self.format_row('senders', letter.senders|map(sender => self.format_person(sender))|join(', ')) }}
             {{ self.format_row('recipient', self.format_recipient(letter.recipient)) }}
-            {{ self.format_row('literature', letter.literature|map(record => record.shortName)|join(', ')|raw) }}
+            {{ self.format_row('literature', letter.literature|map(record => self.format_literature_item(record))|join(', ')|raw) }}
             {{ self.format_row('text', self.format_text(letter.text)) }}
         </tbody>
     </table>
@@ -68,4 +68,8 @@ see <http://www.gnu.org/licenses/>.
             {{- text|raw|nl2br -}}
         </div>
     </div>
+{%- endmacro -%}
+
+{%- macro format_literature_item(bibliographicRecord) -%}
+    <a href="{{ path("bibliographic_record__list") }}#{{ bibliographicRecord.shortName }}">{{ bibliographicRecord.shortName }}</a>
 {%- endmacro -%}

@@ -12,7 +12,7 @@ declare(strict_types=1);
  * GNU General Public License as published by the Free Software Foundation, version 3.
  *
  * «Letters of Russian sovereigns to the Republic of Venice» database is distributed
- * in the hope  that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
  * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  *
@@ -25,52 +25,22 @@ declare(strict_types=1);
 
 namespace App\Persistence\Repository\Letter;
 
-use App\Converter\Letter\LetterEntityToLetterConverterInterface;
-use App\Model\Letter;
-use App\Persistence\Entity\LetterEntity;
+use App\Persistence\Entity\Letter\Letter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
-/**
- * @author Anton Dyshkant <vyshkant@gmail.com>
- *
- * @method LetterEntity|null find(int $id, int $lockMode = null, int $lockVersion = null)
- * @method LetterEntity|null findOneBy(array $criteria, array $orderBy = null)
- * @method LetterEntity[]    findAll()
- * @method LetterEntity[]    findBy(array $criteria, array $orderBy = null, int $limit = null, int $offset = null)
- * @method LetterEntity|null findOneByName(string $name)
- * @method LetterEntity      findOneByNameOrCreate(string $name)
- */
-final class LetterRepository extends ServiceEntityRepository implements LetterRepositoryInterface
+final class LetterRepository extends ServiceEntityRepository
 {
-    /**
-     * @var LetterEntityToLetterConverterInterface
-     */
-    private $letterEntityToLetterConverter;
-
-    public function __construct(
-        ManagerRegistry $registry,
-        LetterEntityToLetterConverterInterface $letterEntityToLetterConverter
-    ) {
-        parent::__construct($registry, LetterEntity::class);
-        $this->letterEntityToLetterConverter = $letterEntityToLetterConverter;
+    public function __construct(ManagerRegistry $registry)
+    {
+        parent::__construct($registry, Letter::class);
     }
 
     /**
      * @return Letter[]
      */
-    public function getAll(): array
+    public function findAllInConventionalOrder(): array
     {
-        return array_map(
-            function (LetterEntity $letterEntity): Letter {
-                return $this->letterEntityToLetterConverter->convert($letterEntity);
-            },
-            $this->findAll()
-        );
-    }
-
-    public function get(int $id): Letter
-    {
-        return $this->letterEntityToLetterConverter->convert($this->find($id));
+        return $this->findAll();
     }
 }

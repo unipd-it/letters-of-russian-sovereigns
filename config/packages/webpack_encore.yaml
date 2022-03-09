@@ -7,7 +7,7 @@
 # GNU General Public License as published by the Free Software Foundation, version 3.
 #
 # «Letters of Russian sovereigns to the Republic of Venice» database is distributed
-# in the hope  that it will be useful, but WITHOUT ANY WARRANTY; without even
+# in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
 # the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 # See the GNU General Public License for more details.
 #
@@ -19,3 +19,6 @@
 
 webpack_encore:
   output_path: '%kernel.project_dir%/public/build'
+  strict_mode: false
+  script_attributes:
+    defer: true
